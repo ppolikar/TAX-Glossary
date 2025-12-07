@@ -21,11 +21,7 @@ html, body {
 }
 
 html {
-    background:
-        radial-gradient(1200px 700px at 20% -10%, rgba(11,77,182,.10), transparent 60%),
-        radial-gradient(900px 600px at 110% 20%, rgba(247,201,72,.16), transparent 55%),
-        #F7FAFC;
-    background-attachment: fixed;
+    background: #F7FAFC;
 }
 
 body {
@@ -33,6 +29,23 @@ body {
     color: var(--text-color);
     background: transparent;
     line-height: 1.6;
+    position: relative;
+}
+
+/* Градієнт через псевдоелемент для кращої підтримки на мобільних */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(1200px 700px at 20% -10%, rgba(11,77,182,.10), transparent 60%),
+        radial-gradient(900px 600px at 110% 20%, rgba(247,201,72,.16), transparent 55%),
+        transparent;
+    pointer-events: none;
+    z-index: -1;
 }
 
 .container {
@@ -488,15 +501,30 @@ header h1 {
 /* Mobile optimizations */
 @media (max-width: 768px) {
     html {
+        background: #F7FAFC;
+    }
+    
+    /* Градієнт для мобільних з іншими розмірами */
+    body::before {
         background:
             radial-gradient(800px 500px at 20% -10%, rgba(11,77,182,.10), transparent 60%),
             radial-gradient(600px 400px at 100% 10%, rgba(247,201,72,.16), transparent 55%),
-            #F7FAFC;
-        background-attachment: fixed;
+            transparent;
+        /* На мобільних спробуємо fixed, якщо не працює - буде scroll */
+        position: fixed;
+        /* Для iOS Safari - використовуємо -webkit-fixed */
+        -webkit-transform: translateZ(0);
     }
     
     body {
-        background: transparent;
+        background: transparent !important;
+        min-height: 100vh;
+        position: relative;
+    }
+    
+    /* Переконаємося, що контейнер не має фону */
+    .container {
+        background: transparent !important;
     }
 
     .container {
