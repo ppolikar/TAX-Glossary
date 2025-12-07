@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Деталі терміну</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <a href="index.html" class="back-link">← Назад</a>
+                <h1 id="termTitle">Завантаження...</h1>
+            </div>
+            <img src="images/logo.svg" alt="EU4PFM Logo" class="logo">
+        </header>
+
+        <div id="termDetail" class="term-detail">
+            <div class="loading">Завантаження...</div>
+        </div>
+
+        <!-- Кнопка запропонувати зміни -->
+        <div class="error-report">
+            <button class="btn-error" id="errorBtn">Запропонувати зміни</button>
+        </div>
+    </div>
+
+    <!-- Модальне вікно для запропонованих змін -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Запропонувати зміни</h2>
+            <iframe 
+                id="errorForm" 
+                src="" 
+                width="100%" 
+                height="500" 
+                frameborder="0">
+            </iframe>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/sheets-api.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Завантаження деталей терміну
+        const urlParams = new URLSearchParams(window.location.search);
+        const termId = urlParams.get('id');
+        
+        // Зберігаємо поточний термін для форми
+        let currentTerm = null;
+        
+        if (termId) {
+            loadTermDetail(termId).then(term => {
+                if (term) {
+                    currentTerm = term;
+                }
+            });
+        } else {
+            document.getElementById('termDetail').innerHTML = 
+                '<div class="error">Термін не знайдено</div>';
+        }
+
+        // Обробка кнопки помилки
+        document.getElementById('errorBtn').addEventListener('click', () => {
+            let errorFormUrl = CONFIG.ERROR_FORM_URL;
+            if (currentTerm) {
+                const termName = encodeURIComponent(currentTerm.Term || '');
+                if (CONFIG.ERROR_FORM_TERM_ID_FIELD && CONFIG.ERROR_FORM_TERM_ID_FIELD !== '123456789') {
+                    errorFormUrl += `&entry.${CONFIG.ERROR_FORM_TERM_ID_FIELD}=${termName}`;
+                }
+            }
+            document.getElementById('errorForm').src = errorFormUrl;
+            document.getElementById('errorModal').style.display = 'block';
+        });
+
+        // Закриття модального вікна
+        document.querySelector('#errorModal .close').addEventListener('click', () => {
+            document.getElementById('errorModal').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
+
