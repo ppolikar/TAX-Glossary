@@ -35,3 +35,14 @@ Temporary Items
 # Temporary files
 *.tmp
 *.temp
+
+# Security - never commit these
+config.local.js
+*.secret
+*.key
+.env
+.env.local
+
+# Minified files (generated)
+*.min.js
+*.min.css
