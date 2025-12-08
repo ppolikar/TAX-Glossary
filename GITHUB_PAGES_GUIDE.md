@@ -27,7 +27,7 @@
 2. Натисніть кнопку **"+"** в правому верхньому куті → **"New repository"**
 3. Заповніть форму:
    - **Repository name:** `eu4pfm-tax-glossary` (або інша назва)
-   - **Description:** "Словник податкових термінів EN-UK"
+   - **Description:** "Словник податкових термінів EN-UA"
    - **Visibility:** Public (GitHub Pages безкоштовно тільки для публічних репозиторіїв)
    - **НЕ** додавайте README, .gitignore або license (ми вже маємо файли)
 4. Натисніть **"Create repository"**

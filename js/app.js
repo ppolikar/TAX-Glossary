@@ -118,7 +118,7 @@ function createTermCard(term) {
         </div>
     ` : '';
 
-    // Другий рядок: терміни EN та UK
+    // Другий рядок: терміни EN та UA
     const termsHTML = `
         <div class="term-names-row">
             ${termEN ? `<div class="term-name">${escapeHtml(termEN)}</div>` : ''}
@@ -176,7 +176,7 @@ function renderTermDetail(term) {
     
     let html = '<div class="term-detail">';
     
-    // Акроніми (EN та UK разом)
+    // Акроніми (EN та UA разом)
     if (acronymEN || acronymUK) {
         html += `
             <div class="detail-section">
@@ -189,7 +189,7 @@ function renderTermDetail(term) {
         `;
     }
     
-    // Терміни (EN та UK паралельно)
+    // Терміни (EN та UA паралельно)
     if (term.Term || term['Термін']) {
         html += `
             <div class="detail-section">
@@ -203,7 +203,7 @@ function renderTermDetail(term) {
                     ` : ''}
                     ${term['Термін'] ? `
                         <div class="bilingual-item">
-                            <div class="bilingual-lang">UK</div>
+                            <div class="bilingual-lang">UA</div>
                             <div class="bilingual-value">${escapeHtml(term['Термін'])}</div>
                         </div>
                     ` : ''}
@@ -212,7 +212,7 @@ function renderTermDetail(term) {
         `;
     }
     
-    // Визначення (EN та UK паралельно)
+    // Визначення (EN та UA паралельно)
     if (term.Definition || term['Визначення']) {
         html += `
             <div class="detail-section">
@@ -226,7 +226,7 @@ function renderTermDetail(term) {
                     ` : ''}
                     ${term['Визначення'] ? `
                         <div class="bilingual-item">
-                            <div class="bilingual-lang">UK</div>
+                            <div class="bilingual-lang">UA</div>
                             <div class="bilingual-value">${escapeHtml(term['Визначення'])}</div>
                         </div>
                     ` : ''}
@@ -235,7 +235,7 @@ function renderTermDetail(term) {
         `;
     }
     
-    // Примітки (EN та UK паралельно)
+    // Примітки (EN та UA паралельно)
     if (term.Notes || term['Примітки']) {
         html += `
             <div class="detail-section">
@@ -249,7 +249,7 @@ function renderTermDetail(term) {
                     ` : ''}
                     ${term['Примітки'] ? `
                         <div class="bilingual-item">
-                            <div class="bilingual-lang">UK</div>
+                            <div class="bilingual-lang">UA</div>
                             <div class="bilingual-value">${escapeHtml(term['Примітки'])}</div>
                         </div>
                     ` : ''}

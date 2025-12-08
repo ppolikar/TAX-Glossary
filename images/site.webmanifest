@@ -1,7 +1,7 @@
 {
-  "name": "Словник податкових термінів",
-  "short_name": "Словник термінів",
-  "description": "Веб-застосунок для пошуку та перегляду перекладів податкової термінології EN ↔ UK",
+  "name": "TAX DICT",
+  "short_name": "TAX DICT",
+  "description": "Веб-застосунок для пошуку та перегляду перекладів податкової термінології EN ↔ UA",
   "start_url": "/TAX-Glossary/",
   "scope": "/TAX-Glossary/",
   "display": "standalone",
